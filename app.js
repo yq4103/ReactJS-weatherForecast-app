@@ -12,6 +12,10 @@ if (process.env.NODE_ENV === "production") {
     req.sendFile(path.resolve(__dirname, "build", "index.html"));
     res.json(path.resolve(__dirname, "build", "index.html"));
   });
+  app.post("*", (req, res) => {
+    req.sendFile(path.resolve(__dirname, "build", "index.html"));
+    res.json(path.resolve(__dirname, "build", "index.html"));
+  });
 }
 
 // listen on port 3000
