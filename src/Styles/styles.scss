@@ -1,0 +1,132 @@
+@import 'https://fonts.googleapis.com/css2?family=Open+Sans:300,600';
+
+@mixin flex($direction) {
+  display: flex;
+  flex-direction: $direction;
+}
+
+@mixin inputField {
+  padding: 5px 60px;
+  border-radius: 5px;
+}
+
+@mixin sectionBox {
+  margin: 20px;
+}
+
+@mixin opaqueBackground {
+  border: none;
+  border-radius: 10px;
+  background-color: rgb(58, 159, 218);
+  opacity: 0.8;
+}
+
+$borderColor: rgb(159, 157, 157);
+
+:root {
+  font-size: 16px;
+  font-family: 'Open Sans', sans-serif;
+  line-height: 1.6;
+  background: url('../../public/bg.jpg') no-repeat center;
+  color: white;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.title {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.header {
+  @include flex(row);
+  @include sectionBox();
+  @include opaqueBackground();
+  margin-bottom: 20px;
+  padding: 20px 20px 40px 20px;
+  justify-content: space-between;
+  align-items: center;
+    .city_search, .weather_search {
+      @include flex(column);
+      .city_error {
+        margin-bottom:-25px;
+      }
+    }
+
+    .city_search input, .weather_search select {
+      @include inputField();
+      border-color: $borderColor;
+      background-color: transparent;
+    }
+
+}
+
+.searchBtn {
+  @include inputField();
+  margin-top: 25px;
+  height: 30px;
+  background-color: rgb(32, 118, 223);
+  border: none;
+  color: white;
+}
+
+.body {
+  @include sectionBox();
+  border: none;
+  padding: 20px 0;
+  h3 {
+    padding: 0 0 20px 20px;
+  }
+}
+
+.singleSnippet {
+  div{
+    @include flex(row);
+    justify-content: center;
+      div {
+        @include flex(column);
+        margin: 20px;
+      }
+  }
+}
+
+.snippets {
+  @include flex(row);
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 10px;
+    div {
+      @include flex(column);
+      @include opaqueBackground();
+      word-wrap: break-word;
+      text-align: center;
+      width: 20%;
+      margin: 10px;
+      padding: 20px;
+    }
+}
+
+@media only screen and (max-width: 800px) {
+  .header {
+    @include flex(column);
+    align-items: flex-start;
+    .city_search input {
+      margin-bottom: 20px;
+    }
+    .city_error {
+      position:relative; left:0px; bottom:20px;
+    }
+  }
+
+  .snippets {
+    div {
+      width: 40%;
+      margin: 10px;
+      padding: 20px;
+    }
+  }
+}
