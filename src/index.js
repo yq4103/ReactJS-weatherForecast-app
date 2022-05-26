@@ -8,6 +8,6 @@ import "./Styles/styles.scss";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <WeatherSearch title="Weather Forecast" />
+    <WeatherSearch />
   </React.StrictMode>
 );
