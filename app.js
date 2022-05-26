@@ -7,8 +7,9 @@ const port = process.env.PORT || 3000;
 // static files
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("build"));
-  app.use("/hourly", express.static(__dirname + "build/hourly"));
-  app.use("/daily", express.static(__dirname + "build/daily"));
+  app.use(express.json());
+  app.use("/hourly", express.static(__dirname + "/hourly"));
+  app.use("/daily", express.static(__dirname + "/daily"));
   app.get("/*", (req, res) => {
     req.sendFile(path.resolve(__dirname, "build", "index.html"));
   });
