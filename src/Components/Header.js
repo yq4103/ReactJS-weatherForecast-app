@@ -3,9 +3,11 @@ import { useState } from "react";
 const Header = (props) => {
   const [cityName, setCityName] = useState("");
   const [type, setType] = useState("");
-  const [error, setError] = useState({
+  const [formError, setFormError] = useState({
     isFormError: false,
     messageForm: "",
+  });
+  const [typeError, setTypeError] = useState({
     isTypeError: false,
     messageType: "",
   });
@@ -17,34 +19,50 @@ const Header = (props) => {
       setCityName("");
       props.onToggle(type);
       setType("");
-      setError({
+      setFormError({
         isFormError: false,
         messageForm: "",
+      });
+      setTypeError({
         isTypeError: false,
         messageType: "",
       });
     } else if (!cityName && !type) {
-      setError({
+      setFormError({
         isFormError: true,
         messageForm: "Please enter a city.",
+      });
+      setTypeError({
         isTypeError: true,
         messageType: "Please select a forecast type.",
       });
     } else if (!cityName) {
-      setError({
+      setFormError({
         isFormError: true,
         messageForm: "Please enter a city.",
-        isTypeError: false,
-        messageType: "",
       });
     } else if (!type) {
-      setError({
-        isFormError: false,
-        messageForm: "",
+      setTypeError({
         isTypeError: true,
         messageType: "Please select a forecast type.",
       });
     }
+  };
+
+  const cityOnChange = (e) => {
+    setCityName(e.target.value);
+    setFormError({
+      isFormError: false,
+      messageForm: "",
+    });
+  };
+
+  const typeOnChange = (e) => {
+    setType(e.target.value);
+    setTypeError({
+      isTypeError: false,
+      messageType: "",
+    });
   };
 
   return (
@@ -57,35 +75,30 @@ const Header = (props) => {
             placeholder="Enter City"
             name="city"
             value={cityName}
-            onChange={(e) => {
-              setCityName(e.target.value);
-            }}
+            onChange={cityOnChange}
           />
-          {error.isFormError && (
-            <p style={{ color: "red" }} className="city_error">
-              {error.messageForm}
+          {formError.isFormError && (
+            <p style={{ color: "orange" }} className="city_error">
+              {formError.messageForm}
             </p>
           )}
         </div>
         <div className="weather_search">
           <h4>Forecast Type</h4>
-          <select
-            onChange={(e) => {
-              setType(e.target.value);
-            }}
-            value={type}
-          >
+          <select onChange={typeOnChange} value={type}>
             <option value="">Please Select</option>
             <option value="daily">Hourly</option>
             <option value="hourly">Daily</option>
           </select>
-          {error.isTypeError && (
-            <p style={{ color: "red" }} className="city_error">
-              {error.messageType}
+          {typeError.isTypeError && (
+            <p style={{ color: "orange" }} className="city_error">
+              {typeError.messageType}
             </p>
           )}
         </div>
-        <input type="submit" value="Get Forecast" className="searchBtn" />
+        <button type="submit" className="searchBtn">
+          Get Forecast
+        </button>
       </form>
     </section>
   );

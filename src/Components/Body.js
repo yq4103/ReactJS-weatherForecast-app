@@ -61,7 +61,7 @@ const Body = (props) => {
       </h3>
       <hr />
       {error.isSearchError && props.weatherForm ? (
-        <p style={{ color: "red" }}>{error.messageSearch}</p>
+        <p style={{ color: "orange" }}>{error.messageSearch}</p>
       ) : null}
       <article className="singleSnippet">
         {weather

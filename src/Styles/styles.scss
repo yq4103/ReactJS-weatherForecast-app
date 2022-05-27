@@ -65,13 +65,14 @@ $borderColor: rgb(159, 157, 157);
 
     .city_search input, .weather_search select {
       @include inputField();
-      color: white;
+      color: rgb(6, 40, 83);
       border-color: $borderColor;
-      background-color: transparent;
+      background-color: white;
+      cursor: pointer;
     }
     
     ::placeholder {
-      color: white;
+      color: rgb(6, 40, 83);
     }
 }
 
@@ -79,9 +80,10 @@ $borderColor: rgb(159, 157, 157);
   @include inputField();
   margin-top: 25px;
   height: 30px;
-  background-color: rgb(32, 118, 223);
+  background-color: rgb(6, 40, 83);
   border: none;
   color: white;
+  cursor: pointer;
 }
 
 .body {
