@@ -1,5 +1,7 @@
 # React Weather Forecast App
 
+This app has been deployed [here](https://react-weatherforecast-app.herokuapp.com/).
+
 - Front-end stack: ReactJS, SASS
 - Back-end stack: Express
 - API: OpenWeatherMap Weather API
